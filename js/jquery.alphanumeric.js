@@ -3,7 +3,7 @@
 	$.fn.alphanumeric = function(p) { 
 
 		p = $.extend({
-			ichars: "!@#$%^&*()+=[]\\\';,/{}|\":<>?~`.- ",
+			ichars: "!@#$%^&*¹²³£¢¬§₢()+=[]\\\';,/{}|\":<>?~`´°ªº.-_¨ ",
 			nchars: "",
 			allow: ""
 		  }, p);	
@@ -48,7 +48,7 @@
 
 	$.fn.numeric = function(p) {
 	
-		var az = "abcdefghijklmnopqrstuvwxyz";
+		var az = "abcdefghijklmnopqrstuvwxyzáàâãéèêíìîóòõôúùûç";
 		az += az.toUpperCase();
 
 		p = $.extend({

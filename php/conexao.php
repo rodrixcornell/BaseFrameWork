@@ -23,8 +23,10 @@ var $recurso,
  	/* ---------------------------------------------------------------------------- */
 	
 	function AbriConexao() {
-		set_time_limit(60);
-		$this->ora_conecta = @oci_connect($this->usuario, $this->senha, $this->ipBanco, 'AL32UTF8');
+		$this->ora_conecta = @oci_connect($this->usuario, $this->senha, $this->ipBanco, 'AL32UTF8');		
+		$stmt = @oci_parse($this->ora_conecta, "ALTER SESSION set NLS_LANGUAGE = 'BRAZILIAN PORTUGUESE'");
+		@oci_execute($stmt);
+		
 
 		if(!$this->ora_conecta) {
 			echo "<p><strong>N&atilde;o foi possivel conectar-se ao servidor Oracle.</strong></p>\n"."<p>Tente novamente mais tarde.</p>\n";
@@ -39,7 +41,7 @@ var $recurso,
 	
             $this->AbriConexao();
             $this->query = $query;
-  	    	$this->rc = oci_parse($this->ora_conecta, $this->query);
+  	    	$this->rc = @oci_parse($this->ora_conecta, $this->query);
             if(@oci_execute($this->rc)){
 					$this->fecharConexao();
 					$this -> erro = 0;
@@ -90,11 +92,11 @@ var $recurso,
 		$str_procedure = "BEGIN ".
 						 	$repo->sp."(".$variaveis.");".
 						 "END;";
-		set_time_limit(60);
+		set_time_limit(500);
 		$this->rc = oci_parse($this->ora_conecta, $str_procedure);
 		
 		if ( preg_match_all( "/(?:\:varINPUT\d+|\:varOUTPUT\d+|\:varCURSOR)/", $variaveis, $result) ) {	
-			oci_bind_by_name($this->rc, ':varINPUT', $repo->valParametro[':varINPUT']);
+			//oci_bind_by_name($this->rc, ':varINPUT', $repo->valParametro[':varINPUT']);
 			
 			foreach($result[0] as $campo) {							
 				//INPUT																
@@ -108,7 +110,7 @@ var $recurso,
 			}
 		}
 		
-		if(@oci_execute($this->rc)){
+		if(oci_execute($this->rc)){
 			$this->fecharConexao();
 			$this->erro = false;
 		} else {

@@ -2,7 +2,7 @@
     position:relative;
     z-index:100;
     height:32px;
-	background:#0067AC;
+	background:#248B60;
 }
 #menu .menu {
     position:absolute;
@@ -68,6 +68,7 @@
 }
 #menu li li a:hover { background:#888;}
 #menu li li a span { color:#fff;  background-color:#044F77;}
+#menu li li li a span { color:#fff;  background-color:#3C6981;}
 #menu li li a:hover span { color:#ffffff; background-color:#06689D;}
 #menu li li a.parent span { background:url(../img/menu/pointer.gif) no-repeat right 9px; _background-position:right 10px;}
 *+html #menu li li a.parent span { background-position:right 10px;}

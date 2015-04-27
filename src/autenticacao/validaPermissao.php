@@ -16,13 +16,19 @@ if (!$total){
 	$smarty->assign("nomeArquivo" 	, "sempermissao.tpl");
 	$smarty->display('index.tpl');
 	exit;
-}
-else if (!$nivel['CS_NIVEL_ACESSO'][0] && $current == 1){
-	$smarty->assign("current" 	, $current);
-	$smarty->assign("nomeArquivo" 	, "sempermissao.tpl");
-	$smarty->display('index.tpl');
-	exit;
-}
+}else{
+	$nomeTela[1] = 'cadastrar';
+	$nomeTela[2] = 'alterar';
+	$nomeTela[3] = 'excluir';
 
-$smarty->assign("nivel" 	, $nivel['CS_NIVEL_ACESSO'][0]);
+	if(array_search($nomeArquivo, $nomeTela) && !$nivel['CS_NIVEL_ACESSO'][0]){
+		$smarty->assign("current" 	, $current);
+		$smarty->assign("nomeArquivo" 	, "sempermissao.tpl");
+		$smarty->display('index.tpl');
+		exit;
+	}
+
+	$acesso = $nivel['CS_NIVEL_ACESSO'][0];
+	$smarty->assign("acesso" 	, $nivel['CS_NIVEL_ACESSO'][0]);
+}
 ?>

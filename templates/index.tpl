@@ -3,11 +3,11 @@
     <head>
         <title>{$titulo}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link href="{$urlcss}layout.css" rel="stylesheet" type="text/css">
+        <link href="{$urlcss}layout.css?trick={1|mt_rand:10000}" rel="stylesheet" type="text/css">
         <link href="{$urlcss}menu.css" rel="stylesheet" type="text/css">
         <link href="{$urlcss}simpleAutoComplete.css" rel="stylesheet" type="text/css"> 
         <link href="{$urlcss}jquery-ui.css" rel="stylesheet" type="text/css">
-        {if $arquivoCSS}<link href="{$urlcss}{$arquivoCSS}.css" rel="stylesheet" type="text/css">{/if}
+        {if $arquivoCSS}<link href="{$urlcss}{$arquivoCSS}.css?trick={1|mt_rand:10000}" rel="stylesheet" type="text/css">{/if}
         <link rel="shortcut icon" type="image/x-icon" href="{$urlimg}favicon.ico">
         
 		<script charset="UTF-8" type="text/javascript" language="JavaScript">
@@ -20,13 +20,19 @@
         <script type="text/javascript" src="{$url}js/jquery.alphanumeric.js"></script>     
         <script type="text/javascript" src="{$url}js/jquery-ui.js"></script>
         <script type="text/javascript" src="{$url}js/jquery-ui-timepicker-addon.js"></script>
+        <script type="text/javascript" src="{$url}js/jquery.mask.min.js"></script>
         <script type="text/javascript" src="{$url}js/scripts.js"></script>
         <script type="text/javascript" src="{$url}js/simpleAutoComplete.js"></script>
         <script type="text/javascript" src="{$url}js/menu.js"></script>
-        {if $arquivoJS}<script type="text/javascript" src="{$url}js/{$arquivoJS}.js"></script>{/if}
+        {if $arquivoJS}<script type="text/javascript" src="{$url}js/{$arquivoJS}.js?trick={1|mt_rand:10000}"></script>{/if}
 
     </head>
     <body>
+    	<noscript>
+		 Para completa funcionalidade deste site é necessário habilitar o JavaScript.
+		 Aqui estão as <a href="http://www.enable-javascript.com/pt/" target="_blank">
+		 instruções de como habilitar o JavaScript no seu navegador</a>.
+		</noscript>
         <div id="centraliza">
         	{include file="topo.tpl"}
             {if $nomeArquivo != 'autenticacao/index.tpl'}{include file="menu.tpl"}{/if}
